@@ -7,6 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = webpackMerge.merge(common, {
     devtool: 'eval-source-map',
+    stats: 'minimal', // 只在发生错误时输出, minimal 只在发生错误或有新的编译时输出
     output: {
         filename: 'js/[name].[hash:8].bundle.js',
     },
