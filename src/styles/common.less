@@ -1,0 +1,26 @@
+@import '~antd/lib/style/themes/default.less';
+@import '~antd/dist/antd.less'; // 引入官方提供的 less 样式入口文件
+@import 'theme'; // 用于覆盖上面定义的变量
+
+#root {
+  height: 100%;
+}
+// reset
+* {
+  box-sizing: border-box;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  transition: @transition;
+}
+
+a[href]:hover {
+  text-decoration: underline;
+}

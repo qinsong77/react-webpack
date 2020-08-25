@@ -6,6 +6,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 module.exports = webpackMerge.merge(common, {
     mode: 'production',
@@ -13,11 +14,12 @@ module.exports = webpackMerge.merge(common, {
         minimizer: [
             new TerserPlugin({
                 cache: true,
-                extractComments: true
+                sourceMap: false,
+                extractComments: false
             }),// 压缩js
             new OptimizeCssAssetsPlugin({ // 压缩css
                 assetNameRegExp:/\.css$/g, // 正则表达式，用于匹配需要优化或者压缩的资源名。默认值是/.css$/g
-                cssProcessor:require("cssnano"), // 用于压缩和优化CSS 的处理器，默认是 cssnano.
+                cssProcessor:require('cssnano'), // 用于压缩和优化CSS 的处理器，默认是 cssnano.
                 cssProcessorPluginOptions:{
                     preset:['default', { discardComments: { removeAll:true } }] // discardComments 去除注释
                 },
@@ -31,14 +33,14 @@ module.exports = webpackMerge.merge(common, {
             minChunks: 1,
             cacheGroups: {
                 framework: {
-                    test: "framework",
-                    name: "framework",
+                    test: 'framework',
+                    name: 'framework',
                     enforce: true
                 },
                 vendors: {
                     priority: -10,
                     test: /node_modules/,
-                    name: "vendor",
+                    name: 'vendor',
                     enforce: true,
                 },
             }
@@ -62,6 +64,7 @@ module.exports = webpackMerge.merge(common, {
             filename: 'css/[name].[hash].css',
             chunkFilename: 'css/[id].[hash].css',
         }),
+        new BundleAnalyzerPlugin(),
         new CleanWebpackPlugin()
     ]
 });

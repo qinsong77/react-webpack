@@ -1,29 +1,47 @@
-import App from '../components/App'
-import Register from '../views/register'
-import Login from '../views/login'
-import UserList from '../views/user-list'
+import Main from '../components/Main'
+import Index from '../views/index'
+import Login from '../views/Login/login'
+import UserList from '../views/main/user-list.js'
+import Table from '../views/main/table'
 
 const routes = [
 	{
 		path: '/',
 		exact: true,
-		// sidebar: () => <div>home!</div>,
-		main: App
-	},
-	{
-		path: '/register',
-		// sidebar: () => <div>bubblegum!</div>,
-		main: Register
+		auth: false,
+		component: Index
 	},
 	{
 		path: '/login',
-		// sidebar: () => <div>shoelaces!</div>,
-		main: Login
+		exact: true,
+		auth: false,
+		component: Login
 	},
 	{
-		path: '/user-list',
-		// sidebar: () => <div>shoelaces!</div>,
-		main: UserList
+		path: '/main',
+		exact: false, // 嵌套路由，不能在父级家 exact，因为先要匹配父级然后才能匹配子集
+		auth: true,
+		component: Main,
+		routes: [
+			{
+				path: '/main/user',
+				title: '菜单1',
+				icon: 'UserOutlined',
+				component: UserList
+			},
+			{
+				path: '/main/menu2',
+				title: '菜单2',
+				icon: 'LaptopOutlined',
+				subs: [
+					{
+						path: '/main/menu2/table',
+						title: '菜单2-1',
+						component: Table
+					}
+				]
+			}
+		]
 	}
 ]
 export default routes

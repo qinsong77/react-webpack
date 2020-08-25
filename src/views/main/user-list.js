@@ -11,17 +11,17 @@ export default function () {
 	// 	getData()
 	// })
 	useEffect(()=> {
-		getUsers()
-			.then(res=> {
-				setTimeout(() => {
-					console.log(res)
-					setUsers(res.data)
-				}, 1000)
-			})
+		// getUsers()
+		// 	.then(res=> {
+		// 		setTimeout(() => {
+		// 			console.log(res)
+		// 			setUsers(res.data)
+		// 		}, 1000)
+		// 	})
 	}, [])
 	return (
 		<div>
-			<h1>App</h1>
+			<h1>Users</h1>
 			<div>{ users.map((item, index) =>
 				<li key={index}>
 					{JSON.stringify(item)}

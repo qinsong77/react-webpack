@@ -58,21 +58,23 @@ module.exports = {
                 use: getCssLoaders(1),
             },
             {
-                test: /\.scss|sass$/,
+                test: /\.less$/,
                 use: [
                   // postcss-loader + sass-loader 两个 loader，所以 importLoaders 应该设置为 2
                     ...getCssLoaders(3),
                     {
-                        loader: 'sass-loader',
-                        options: { sourceMap: true },
-                    },
-                    { loader: 'sass-resources-loader',
+                        loader: 'less-loader',
                         options: {
                             sourceMap: true,
-                            resources: [
-                                resolve('../src/styles/variable.scss'),
-                                resolve('../src/styles/mixins.scss')
-                            ]
+                            lessOptions: {
+                                javascriptEnabled: true // https://github.com/ant-design/ant-motion/issues/44
+                            }
+                        },
+                    },
+                    { loader: 'style-resources-loader',
+                        options: {
+                            patterns: resolve('../src/styles/variable.less'),
+                            injector: 'append'
                         }
                     }
                 ],
