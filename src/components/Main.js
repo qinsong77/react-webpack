@@ -39,10 +39,12 @@ function RenderBread (routes, pathName) {
 	})
 
 	return (
+		route && route.title ? (
 		<Breadcrumb style={{ margin: '12px 0' }}>
 			<Breadcrumb.Item>{ route.title }</Breadcrumb.Item>
 			{ subRoute ? (<Breadcrumb.Item>{ subRoute.title }</Breadcrumb.Item>) : ''}
 		</Breadcrumb>
+		): ''
 	)
 }
 
@@ -92,8 +94,9 @@ function Main ({ routes, history, location }) {
 					<Layout className='container-main'>
 						{ RenderBread(routes, location.pathname) }
 						<Content className="container-main-content">
+							<div id='subapp'/>
 							<Switch>
-								{ routes.map((route, i) => {
+								{ routes.filter(v => !v.isSubApp).map((route, i) => {
 									// if (route.auth) {
 									// 	return (
 									// 		<PrivateRoute  key={i} path={route.path}>

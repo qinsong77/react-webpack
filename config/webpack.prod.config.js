@@ -28,10 +28,19 @@ module.exports = webpackMerge.merge(common, {
         ],
         splitChunks: {
             chunks: 'all',
-            minSize: 30000,
+            minSize: 10000,
             maxSize: 0,
             minChunks: 1,
             cacheGroups: {
+                // 将动态引入的css合并成一个css文件
+                async: {
+                    name: 'styles',
+                    test: (m) => m.constructor.name === 'CssModule',
+                    chunks: 'all',
+                    minChunks: 1,
+                    reuseExistingChunk: true,
+                    enforce: true
+                },
                 framework: {
                     test: 'framework',
                     name: 'framework',

@@ -8,9 +8,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = webpackMerge.merge(common, {
     devtool: 'eval-source-map',
     stats: 'minimal', // 只在发生错误时输出, minimal 只在发生错误或有新的编译时输出
-    output: {
-        filename: 'js/[name].[hash:8].bundle.js',
-    },
+    // output: {
+    //     filename: 'js/[name].[hash:8].bundle.js',
+    // },
     devServer: {
         historyApiFallback: true, // 处理刷新Cannot GET /xxx 报错
         contentBase: path.resolve(__dirname, '../dist'),
@@ -18,6 +18,7 @@ module.exports = webpackMerge.merge(common, {
         port: 9000,
         compress: true,
         hot: true,
+        host: '0.0.0.0',
         proxy: [{
             context: ['/api'],
             target: 'http://localhost:3000',

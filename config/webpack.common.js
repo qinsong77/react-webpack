@@ -31,9 +31,10 @@ function getCssLoaders(importLoaders = 1) {
 module.exports = {
     entry: {
         app: './src/index.js',
-        framework: ['react','react-dom']
+        framework: ['react','react-dom', 'react-router-dom', 'axios']
     },
     output: {
+        publicPath: '/',
         filename: 'js/bundle.js',
         path: resolve('../dist')
     },

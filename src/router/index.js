@@ -40,7 +40,27 @@ const routes = [
 						component: Table
 					}
 				]
-			}
+			},
+			{
+				path: '/main/device',
+				title: '设备',
+				icon: 'LaptopOutlined',
+				isSubApp: true,
+				subs: [
+					{
+						path: '/main/device',
+						title: '设备首页'
+					},
+					{
+						path: '/main/device/table',
+						title: '设备table'
+					},
+					{
+						path: '/main/device/list',
+						title: '设备list'
+					}
+				]
+			},
 		]
 	}
 ]
