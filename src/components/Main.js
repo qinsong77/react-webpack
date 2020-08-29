@@ -37,12 +37,14 @@ function RenderBread (routes, pathName) {
 			return true
 		} else return false
 	})
-
+	
 	return (
-		<Breadcrumb style={{ margin: '12px 0' }}>
-			<Breadcrumb.Item>{ route.title }</Breadcrumb.Item>
-			{ subRoute ? (<Breadcrumb.Item>{ subRoute.title }</Breadcrumb.Item>) : ''}
-		</Breadcrumb>
+		route && route.title ? (
+			<Breadcrumb style={{ margin: '12px 0' }}>
+				<Breadcrumb.Item>{ route.title }</Breadcrumb.Item>
+				{ subRoute ? (<Breadcrumb.Item>{ subRoute.title }</Breadcrumb.Item>) : ''}
+			</Breadcrumb>
+		): ''
 	)
 }
 

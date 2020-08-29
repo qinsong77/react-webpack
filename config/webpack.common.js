@@ -34,6 +34,7 @@ module.exports = {
         framework: ['react','react-dom']
     },
     output: {
+        publicPath: '/',
         filename: 'js/bundle.js',
         path: resolve('../dist')
     },

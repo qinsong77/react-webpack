@@ -1,7 +1,7 @@
 import React from 'react'
 import 'normalize.css'
 import './styles/common.less'
-import { HashRouter as Router, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Switch } from 'react-router-dom'
 import routes from './router'
 import PrivateRoute from './components/PrivateRoute'
 import RouteWithSubRoutes from './components/RouteWithSubRoutes'
