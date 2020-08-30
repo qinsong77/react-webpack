@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { Form, Input, Button, Checkbox } from 'antd'
-import { UserOutlined, LockOutlined } from '@ant-design/icons'
-import { login } from '../../api'
+import { Form, Input, Button, message } from 'antd'
+import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons'
+import { registerUser } from '../../api'
 import config from '../../config'
-import './login.less'
+import './register.less'
 
 
 export default function ({ history }) {
@@ -12,14 +12,15 @@ export default function ({ history }) {
 
 	const onFinish = values => {
 		setBtnLoading(true)
-		const { username, password } = values
-			login ({
+		const { username, password, email } = values
+			registerUser ({
 				username,
+				email,
 				password
 			}).then (res => {
 				console.log (res)
-				if (res.data && res.data.token) localStorage.setItem (config.tokeKey, res.data.token)
-				history.push ('/main')
+				message.success('注册成功，跳转登录页..')
+				history.push ('/login')
 			}).finally(() => setBtnLoading(false))
 	}
 
@@ -43,6 +44,14 @@ export default function ({ history }) {
 					>
 						<Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="请输入用户名" />
 					</Form.Item>
+					
+					<Form.Item
+						// label="用户名"
+						name="email"
+						rules={[{ required: true, message: '请输入邮箱!', type: 'email' }]}
+					>
+						<Input prefix={<MailOutlined className="site-form-item-icon" />} placeholder="请输入邮箱" />
+					</Form.Item>
 
 					<Form.Item
 						// label="密码"
@@ -56,13 +65,9 @@ export default function ({ history }) {
 						/>
 					</Form.Item>
 
-					<Form.Item name="remember" valuePropName="checked">
-						<Checkbox>Remember me</Checkbox>
-					</Form.Item>
-
 					<Form.Item>
 						<Button loading={btnLoading} type="primary" htmlType="submit" className='login-form-btn'>
-							登录
+							注册
 						</Button>
 					</Form.Item>
 				</Form>

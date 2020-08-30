@@ -15,9 +15,10 @@ export const login = (data) => {
 	})
 }
 
-export const getUsers = _ => {
+export const getUsers = (params) => {
 	return axios.request({
 		url: '/users',
-		method: 'get'
+		method: 'get',
+		params
 	})
 }

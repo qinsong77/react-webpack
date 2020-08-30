@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 
 function PrivateRoute ({ children, ...rest }) {
-	let isAuthenticated = sessionStorage.getItem('auth')
+	let isAuthenticated = localStorage.getItem('Authorization')
 	return (
 		<Route
 			{...rest}

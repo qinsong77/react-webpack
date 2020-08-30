@@ -1,18 +1,27 @@
 import axios from 'axios'
 import localConfig from '@/config'
+import { notification } from 'antd'
 
 const instance = axios.create({
   timeout: 1000 * 15,
-
+  
   baseURL: `${localConfig.baseUrl}`,
-
+  
   validateStatus: () => {
     return true
   }
 })
-const localLogout = (res) => {
 
-  alert('登录过期，请重新登录！')
+const openNotification = (description, title = '提示', type = 'open') => {
+  notification[type]({
+    message: title,
+    description: description
+  })
+}
+
+const localLogout = (res) => {
+  
+  openNotification('登录过期，请重新登录！', undefined , 'info')
   return Promise.reject(res)
 }
 
@@ -29,9 +38,10 @@ instance.interceptors.response.use(
       return localLogout.call(res)
     }
     if (res.status === 204) return res // 获取验证码无返回
-    const { code, msg } = res.data
-    if (code !== 200 && code !== 0) {
-      return Promise.reject(msg)
+    const { code, message } = res.data
+    if (code !== 200) {
+      openNotification(message, '出错了', 'error')
+      return Promise.reject(message)
     } else return res.data
   },
   error => {
