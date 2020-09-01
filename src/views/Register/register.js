@@ -20,8 +20,9 @@ export default function ({ history }) {
 			}).then (res => {
 				console.log (res)
 				message.success('注册成功，跳转登录页..')
+				setBtnLoading(false)
 				history.push ('/login')
-			}).finally(() => setBtnLoading(false))
+			}).catch(() => setBtnLoading(false))
 	}
 
 	const onFinishFailed = errorInfo => {

@@ -5,6 +5,7 @@ import Register from '../views/Register/register'
 import UserList from '../views/main/user-list.js'
 import Dashboard from '../views/main/dashboard'
 import Table from '../views/main/table'
+import Chat from '../views/chat'
 
 const routes = [
 	{
@@ -24,6 +25,12 @@ const routes = [
 		exact: true,
 		auth: false,
 		component: Register
+	},
+	{
+		path: '/chat',
+		exact: true,
+		auth: true,
+		component: Chat
 	},
 	{
 		path: '/main',

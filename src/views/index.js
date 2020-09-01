@@ -13,6 +13,7 @@ function Index () {
 						<img src={logo} className="container-logo" alt="logo" />
 						<h3>Notend</h3>
 						<Link to="/main">main</Link>
+						<Link to="/chat">chat</Link>
 					</div>
 					<ul>
 						<li>

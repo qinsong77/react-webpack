@@ -22,3 +22,18 @@ export const getUsers = (params) => {
 		params
 	})
 }
+
+export const getUserDetail = (id) => {
+	return axios.request({
+		url: `/users/${id}`,
+		method: 'get'
+	})
+}
+
+export const addFriend = (data) => {
+	return axios.request({
+		url: '/users/add_friend',
+		method: 'post',
+		data
+	})
+}

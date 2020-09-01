@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Card, Table, Button } from 'antd'
 import { DeleteOutlined } from '@ant-design/icons'
-import { getUsers } from '_api'
+import { getUsers, getUserDetail } from '_api'
 
 export default function () {
 	const [data, setData] = useState({
@@ -15,6 +15,10 @@ export default function () {
 	})
 	useEffect(() => {
 		fetchData()
+		// getUserDetail('a666591f-a999-4b08-98f3-bd9a08f9c90f')
+		// 	.then(res => {
+		// 		console.log(res)
+		// 	})
 	}, [])
 	
 	
