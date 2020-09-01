@@ -3,6 +3,9 @@ import Index from '../views/index'
 import Login from '../views/Login/login'
 import UserList from '../views/main/user-list.js'
 import Table from '../views/main/table'
+import TestUseCustomState from '../views/test/testUseCustomState'
+import TestContext from '../views/test/testContext'
+import TestReducer from '../views/test/testReducer'
 
 const routes = [
 	{
@@ -16,6 +19,30 @@ const routes = [
 		exact: true,
 		auth: false,
 		component: Login
+	},
+	{
+		path: '/testUseCustomState',
+		exact: true,
+		auth: false,
+		component: TestUseCustomState
+	},
+	{
+		path: '/testContext',
+		exact: true,
+		auth: false,
+		component: TestContext
+	},
+	{
+		path: '/testReducer',
+		exact: true,
+		auth: false,
+		component: TestReducer
+	},
+	{
+		path: '/testUseCustomState',
+		exact: true,
+		auth: false,
+		component: TestUseCustomState
 	},
 	{
 		path: '/main',

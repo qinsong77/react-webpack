@@ -10,6 +10,16 @@ function Index () {
 			<li>
 				<Link to="/login">Login</Link>
 			</li>
+			<li>
+				<Link to="/testUseCustomState">TestUseCustomState</Link>
+			</li>
+			<li>
+				<Link to="/testContext">TestContext</Link>
+			</li>
+
+			<li>
+				<Link to="/testReducer">TestReducer</Link>
+			</li>
 		</ul>
 	)
 }
