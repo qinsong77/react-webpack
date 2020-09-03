@@ -14,5 +14,11 @@ export default {
   /**
    * @description 是否为app环境
    */
-  tokeKey: 'Authorization'
+  tokeKey: 'Authorization',
+  setUserInfo: function (data) {
+    localStorage.setItem('user-info', JSON.stringify(data))
+  },
+  getUserInfo: function () {
+    return JSON.parse(localStorage.getItem('user-info'))
+  }
 }

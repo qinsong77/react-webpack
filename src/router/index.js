@@ -6,6 +6,8 @@ import UserList from '../views/main/user-list.js'
 import Dashboard from '../views/main/dashboard'
 import Table from '../views/main/table'
 import Chat from '../views/chat'
+import Message from '../views/chat/Message'
+import Contact from '../views/chat/Contact'
 
 const routes = [
 	{
@@ -30,7 +32,19 @@ const routes = [
 		path: '/chat',
 		exact: true,
 		auth: true,
-		component: Chat
+		component: Chat,
+		redirect: '/chat/message',
+		routes: [
+			{
+				path: '/chat/message',
+				title: 'message',
+				component: Message
+			},
+			{
+				path: '/chat/contact',
+				title: 'contact',
+				component: Contact
+			}]
 	},
 	{
 		path: '/main',

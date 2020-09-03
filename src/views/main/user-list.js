@@ -2,45 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { Card, Table, Button } from 'antd'
 import { DeleteOutlined } from '@ant-design/icons'
 import { getUsers, getUserDetail } from '_api'
+import useData from '../../styles/useData'
 
 export default function () {
-	const [data, setData] = useState({
-		data: [],
-		loading: true,
-		pagination: {
-			current: 1,
-			pageSize: 2,
-			total: 0
-		}
-	})
-	useEffect(() => {
-		fetchData()
-		// getUserDetail('a666591f-a999-4b08-98f3-bd9a08f9c90f')
-		// 	.then(res => {
-		// 		console.log(res)
-		// 	})
-	}, [])
 	
+	const [data, fetchData] = useData(getUsers)
 	
-	const fetchData = (pagination = data.pagination) => {
-		setData({
-			...data,
-			loading: true
-		})
-		delete pagination.total
-		getUsers(pagination)
-			.then(res => {
-				console.log(res)
-				setData({
-					pagination: {
-						...pagination,
-						total: res.data.total
-					},
-					data: res.data.data,
-					loading: false
-				})
-			})
-	}
+
+	
 	
 	// eslint-disable-next-line max-params
 	const handleTableChange = (pagination, filters, sorter, extra) => {

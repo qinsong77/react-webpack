@@ -22,6 +22,13 @@ export const getUsers = (params) => {
 		params
 	})
 }
+export const getAddMessage = (params) => {
+	return axios.request({
+		url: '/users/msg/new_add',
+		method: 'get',
+		params
+	})
+}
 
 export const getUserDetail = (id) => {
 	return axios.request({

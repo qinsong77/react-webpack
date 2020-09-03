@@ -18,8 +18,11 @@ export default function ({ history }) {
 				password
 			}).then (res => {
 				console.log (res)
-				if (res.data && res.data.token) localStorage.setItem (config.tokeKey, res.data.token)
-				history.push ('/main')
+				if (res.data && res.data.token) {
+					localStorage.setItem (config.tokeKey, res.data.token)
+					config.setUserInfo(res.data.data)
+					history.push ('/main')
+				}
 			}).finally(() => setBtnLoading(false))
 	}
 
