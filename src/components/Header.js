@@ -19,6 +19,9 @@ export default function () {
 					<li>
 						<Link to="/login" onClick={loginOut}>LoginOut</Link>
 					</li>
+					<li>
+						<Link to="/main/user">main_user</Link>
+					</li>
 				</ul>
 			</nav>
 		</>

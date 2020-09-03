@@ -1,12 +1,11 @@
 import React from 'react'
 import 'normalize.css'
 import './styles/common.less'
-import { BrowserRouter as Router, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import routes from './router'
 import PrivateRoute from './components/PrivateRoute'
 import RouteWithSubRoutes from './components/RouteWithSubRoutes'
-
-
+import NoMatch from './views/error/NotFound'
 
 
 function App () {
@@ -24,6 +23,9 @@ function App () {
 						return (<RouteWithSubRoutes key={i} {...route} />)
 					}
 				})}
+				<Route path="*">
+					<NoMatch/>
+				</Route>
 			</Switch>
 		</Router>
 	)

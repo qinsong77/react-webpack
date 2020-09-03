@@ -14,7 +14,8 @@ const routes = [
 		path: '/',
 		exact: true,
 		auth: false,
-		component: Index
+		component: Index,
+		redirect: '/main'
 	},
 	{
 		path: '/login',
@@ -33,7 +34,6 @@ const routes = [
 		exact: true,
 		auth: true,
 		component: Chat,
-		redirect: '/chat/message',
 		routes: [
 			{
 				path: '/chat/message',
@@ -49,9 +49,8 @@ const routes = [
 	{
 		path: '/main',
 		exact: false, // 嵌套路由，不能在父级家 exact，因为先要匹配父级然后才能匹配子集
-		auth: true,
+		auth: false,
 		component: Main,
-		redirect: '/main/dashboard',
 		routes: [
 			{
 				path: '/main/dashboard',

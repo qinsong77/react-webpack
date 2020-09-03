@@ -1,5 +1,5 @@
 import React from 'react'
-import { Switch, withRouter } from 'react-router-dom'
+import { Switch, withRouter, Route, Redirect } from 'react-router-dom'
 
 import { Layout, Menu, Breadcrumb } from 'antd'
 import * as Icon from '@ant-design/icons'
@@ -12,6 +12,7 @@ import HeaderComp from '../components/Header'
 // import PrivateRoute from './PrivateRoute'
 import RouteWithSubRoutes from './RouteWithSubRoutes'
 import '../styles/main-layout.less'
+import NoMatch from '../views/error/NotFound'
 
 // 渲染二级菜单
 function RenderMenuWithSub (route) {
@@ -37,7 +38,7 @@ function RenderBread (routes, pathName) {
 			return true
 		} else return false
 	})
-	
+
 	return (
 		route && route.title ? (
 			<Breadcrumb style={{ margin: '12px 0' }}>
@@ -95,18 +96,21 @@ function Main ({ routes, history, location }) {
 						{ RenderBread(routes, location.pathname) }
 						<Content className="container-main-content">
 							<Switch>
-								{ routes.map((route, i) => {
-									// if (route.auth) {
-									// 	return (
-									// 		<PrivateRoute  key={i} path={route.path}>
-									// 			<route.component/>
-									// 		</PrivateRoute>
-									// 	)
-									// } else {
-									// 	return (<RouteWithSubRoutes key={i} {...route} />)
-									// }
-									return route.hasOwnProperty('subs') ? route.subs.map(sub => (<RouteWithSubRoutes key={sub.path} {...sub} />)) : (<RouteWithSubRoutes key={route.path} {...route} />)
-								})}
+								{ routes.map((route, i) =>
+									{
+										return route.hasOwnProperty('subs') ?
+											(
+												<>
+													<Redirect exact from={route.path} to={route.subs[0].path}/>
+													{ route.subs.map(sub => (<RouteWithSubRoutes key={sub.path} {...sub} />)) }
+												</>
+											) :
+											(<RouteWithSubRoutes key={route.path} {...route} />)
+									}
+								)}
+								<Route path="*">
+									<NoMatch/>
+								</Route>
 							</Switch>
 						</Content>
 						<Footer className='container-footer'>footer</Footer>
