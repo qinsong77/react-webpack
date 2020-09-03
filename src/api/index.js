@@ -22,6 +22,15 @@ export const getUsers = (params) => {
 		params
 	})
 }
+
+export const getFriends = (params) => {
+	return axios.request({
+		url: '/users/friends/list',
+		method: 'get',
+		params
+	})
+}
+
 export const getAddMessage = (params) => {
 	return axios.request({
 		url: '/users/msg/new_add',
@@ -40,6 +49,14 @@ export const getUserDetail = (id) => {
 export const addFriend = (data) => {
 	return axios.request({
 		url: '/users/add_friend',
+		method: 'post',
+		data
+	})
+}
+
+export const agreeAddFriend = (data) => {
+	return axios.request({
+		url: '/users/add_friend_agree',
 		method: 'post',
 		data
 	})

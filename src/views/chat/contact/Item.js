@@ -2,7 +2,6 @@ import React from 'react'
 import avatar from '../avatar.jpg'
 
 function Item(props) {
-	console.log(props)
 	return (
 		<>
 			<p className='label'>{ props.label }</p>

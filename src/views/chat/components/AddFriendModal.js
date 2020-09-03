@@ -35,7 +35,6 @@ function AddFriendModal(props) {
 			name: val
 		})
 			.then(res => {
-				console.log(res)
 				setUserList(res.data.data)
 			})
 			.finally(() => {

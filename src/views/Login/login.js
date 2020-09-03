@@ -6,7 +6,8 @@ import config from '../../config'
 import './login.less'
 
 
-export default function ({ history }) {
+export default function ({ history, location }) {
+	console.log(location.state)
 	
 	const [btnLoading, setBtnLoading] = useState(false)
 
@@ -21,7 +22,8 @@ export default function ({ history }) {
 				if (res.data && res.data.token) {
 					localStorage.setItem (config.tokeKey, res.data.token)
 					config.setUserInfo(res.data.data)
-					history.push ('/main')
+					if (location.state && location.state.from && location.state.from.pathname) history.push (location.state.from.pathname)
+					else history.push ('/')
 				}
 			}).finally(() => setBtnLoading(false))
 	}

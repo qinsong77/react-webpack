@@ -8,14 +8,21 @@ import Table from '../views/main/table'
 import Chat from '../views/chat'
 import Message from '../views/chat/Message'
 import Contact from '../views/chat/Contact'
-
+/*
+	重定向只到二级路由
+ */
 const routes = [
 	{
 		path: '/',
 		exact: true,
 		auth: false,
-		component: Index,
-		redirect: '/main'
+		component: Index
+	},
+	{
+		path: '/redirect',
+		redirect: '/main',
+		exact: true,
+		auth: false
 	},
 	{
 		path: '/login',
@@ -26,15 +33,15 @@ const routes = [
 	{
 		path: '/register',
 		exact: true,
-		auth: false,
+		auth: true,
 		component: Register
 	},
 	{
 		path: '/chat',
-		exact: true,
+		exact: false,
 		auth: true,
 		component: Chat,
-		routes: [
+		subs: [
 			{
 				path: '/chat/message',
 				title: 'message',
@@ -51,7 +58,7 @@ const routes = [
 		exact: false, // 嵌套路由，不能在父级家 exact，因为先要匹配父级然后才能匹配子集
 		auth: false,
 		component: Main,
-		routes: [
+		subs: [
 			{
 				path: '/main/dashboard',
 				title: 'Dashboard',

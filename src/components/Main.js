@@ -9,8 +9,7 @@ const { SubMenu } = Menu
 
 import HeaderComp from '../components/Header'
 
-// import PrivateRoute from './PrivateRoute'
-import RouteWithSubRoutes from './RouteWithSubRoutes'
+import HandleRoute from './HandleRoute'
 import '../styles/main-layout.less'
 import NoMatch from '../views/error/NotFound'
 
@@ -49,7 +48,10 @@ function RenderBread (routes, pathName) {
 	)
 }
 
-function Main ({ routes, history, location }) {
+function Main ({ parentRoute, history, location }) {
+	
+	const { subs: subRoutes } = parentRoute
+	
 	const menuOnClick = ({ item, key, keyPath, domEvent }) => {
 		history.push(key)
 	}
@@ -76,7 +78,7 @@ function Main ({ routes, history, location }) {
 							defaultSelectedKeys={location.pathname}
 							defaultOpenKeys={[setDefaultOpenKeys()]}
 							style={{ height: '100%', borderRight: 0 }}>
-							{ routes.map((item, index) =>
+							{ subRoutes.map((item, index) =>
 								item.hasOwnProperty('subs') ?
 									RenderMenuWithSub(item)
 									: (
@@ -93,19 +95,20 @@ function Main ({ routes, history, location }) {
 						</Menu>
 					</Sider>
 					<Layout className='container-main'>
-						{ RenderBread(routes, location.pathname) }
+						{ RenderBread(subRoutes, location.pathname) }
 						<Content className="container-main-content">
 							<Switch>
-								{ routes.map((route, i) =>
+								<Redirect exact from={parentRoute.path} to={subRoutes[0].path}/>
+								{ subRoutes.map((route, i) =>
 									{
 										return route.hasOwnProperty('subs') ?
 											(
-												<>
-													<Redirect exact from={route.path} to={route.subs[0].path}/>
-													{ route.subs.map(sub => (<RouteWithSubRoutes key={sub.path} {...sub} />)) }
-												</>
+												<Switch key={route.path}>
+													 <Redirect exact from={route.path} to={route.subs[0].path}/>
+													{ route.subs.map(sub => (<HandleRoute key={sub.path} {...sub} />)) }
+												</Switch>
 											) :
-											(<RouteWithSubRoutes key={route.path} {...route} />)
+											(<HandleRoute key={route.path} {...route} />)
 									}
 								)}
 								<Route path="*">

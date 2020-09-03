@@ -14,6 +14,7 @@ function Index () {
 						<h3>Notend</h3>
 						<Link to="/main">main</Link>
 						<Link to="/chat">chat</Link>
+						<Link to="/redirect">redirect_to_main</Link>
 					</div>
 					<ul>
 						<li>
