@@ -24,7 +24,7 @@ function AddFriendModal(props) {
 	}, [props.visible])
 	
 	useEffect(() => {
-		fetchUser()
+		// fetchUser()
 	}, [])
 	
 	const fetchUser = (val = '') => {

@@ -6,8 +6,8 @@ import UserList from '../views/main/user-list.js'
 import Dashboard from '../views/main/dashboard'
 import Table from '../views/main/table'
 import Chat from '../views/chat'
-import Message from '../views/chat/Message'
-import Contact from '../views/chat/Contact'
+import Message from '../views/chat/Message/index'
+import Contact from '../views/chat/contact/index'
 /*
 	重定向只到二级路由
  */

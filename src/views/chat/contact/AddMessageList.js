@@ -1,12 +1,11 @@
 import React from 'react'
 import { Button, Divider, Typography, message } from 'antd'
 import { getAddMessage } from '../../../api'
-import useData from '../../../styles/useData'
-import avatar from '../avatar.jpg'
+import useData from '../../../store/useData'
 // eslint-disable-next-line no-duplicate-imports
 import { agreeAddFriend } from '../../../api'
 
-const { Text, Link } = Typography
+const { Text } = Typography
 
 function AddMessageList() {
 	
@@ -42,7 +41,7 @@ function Item(props) {
 		<>
 			<li>
 				<div className='right-content'>
-					<img className='avatar' src={avatar}/>
+					<img className='avatar' src={window.publicPath + props.sender.avatar }/>
 					<div>
 						<p className='name'>{props.sender.name}</p>
 						<p className='remarks'>{props.remarks}</p>

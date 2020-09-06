@@ -6,6 +6,7 @@ import routes from './router'
 import HandleRoute from './components/HandleRoute'
 import NotFound from './views/error/NotFound'
 
+window.publicPath = 'http://localhost:3000'
 
 function App () {
 	return (

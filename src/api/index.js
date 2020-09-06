@@ -15,9 +15,17 @@ export const login = (data) => {
 	})
 }
 
+export const editUser = (id, data) => {
+	return axios.request({
+		url:'/user/' + id,
+		method: 'put',
+		data
+	})
+}
+
 export const getUsers = (params) => {
 	return axios.request({
-		url: '/users',
+		url: '/users/list',
 		method: 'get',
 		params
 	})
@@ -25,7 +33,15 @@ export const getUsers = (params) => {
 
 export const getFriends = (params) => {
 	return axios.request({
-		url: '/users/friends/list',
+		url: '/user/friends/list',
+		method: 'get',
+		params
+	})
+}
+
+export const getHistoryMessages = (params) => {
+	return axios.request({
+		url: '/user/history_message/list',
 		method: 'get',
 		params
 	})
@@ -33,7 +49,7 @@ export const getFriends = (params) => {
 
 export const getAddMessage = (params) => {
 	return axios.request({
-		url: '/users/msg/new_add',
+		url: '/user/add_friend_message/list',
 		method: 'get',
 		params
 	})
@@ -48,7 +64,7 @@ export const getUserDetail = (id) => {
 
 export const addFriend = (data) => {
 	return axios.request({
-		url: '/users/add_friend',
+		url: '/user/friend',
 		method: 'post',
 		data
 	})
@@ -56,7 +72,17 @@ export const addFriend = (data) => {
 
 export const agreeAddFriend = (data) => {
 	return axios.request({
-		url: '/users/add_friend_agree',
+		url: '/user/add_friend_agree',
+		method: 'post',
+		data
+	})
+}
+
+
+export const uploadFile = (data) => {
+	return axios.request({
+		url: '/user/uploadFile',
+		headers: { "Content-Type": "multipart/form-data" },
 		method: 'post',
 		data
 	})
