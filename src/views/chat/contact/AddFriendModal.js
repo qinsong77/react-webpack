@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getUsers } from '../../../api'
+import { getCanAddUserList } from '../../../api'
 
 import { Input, Modal, Select, Spin } from 'antd'
 import config from '../../../config'
@@ -33,7 +33,7 @@ function AddFriendModal(props) {
 	
 	const fetchUser = (val = '') => {
 		setFetching(true)
-		getUsers({
+		getCanAddUserList({
 			current: 1,
 			pageSize: 200,
 			name: val

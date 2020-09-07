@@ -23,6 +23,13 @@ export const editUser = (id, data) => {
 	})
 }
 
+export const getUserDetail = (id) => {
+	return axios.request({
+		url: `/users/${id}`,
+		method: 'get'
+	})
+}
+
 export const getUsers = (params) => {
 	return axios.request({
 		url: '/users/list',
@@ -31,9 +38,17 @@ export const getUsers = (params) => {
 	})
 }
 
+export const getCanAddUserList = (params) => {
+	return axios.request({
+		url: '/chat/canAddUserList',
+		method: 'get',
+		params
+	})
+}
+
 export const getFriends = (params) => {
 	return axios.request({
-		url: '/user/friends/list',
+		url: '/chat/listFriends',
 		method: 'get',
 		params
 	})
@@ -41,7 +56,7 @@ export const getFriends = (params) => {
 
 export const getHistoryMessages = (params) => {
 	return axios.request({
-		url: '/user/history_message/list',
+		url: '/chat/listHistoryMessages',
 		method: 'get',
 		params
 	})
@@ -49,22 +64,16 @@ export const getHistoryMessages = (params) => {
 
 export const getAddMessage = (params) => {
 	return axios.request({
-		url: '/user/add_friend_message/list',
+		url: '/chat/listAddFriendMessage',
 		method: 'get',
 		params
 	})
 }
 
-export const getUserDetail = (id) => {
-	return axios.request({
-		url: `/users/${id}`,
-		method: 'get'
-	})
-}
 
 export const addFriend = (data) => {
 	return axios.request({
-		url: '/user/friend',
+		url: '/chat/sendAddFriendMessage',
 		method: 'post',
 		data
 	})
@@ -72,7 +81,7 @@ export const addFriend = (data) => {
 
 export const agreeAddFriend = (data) => {
 	return axios.request({
-		url: '/user/add_friend_agree',
+		url: '/chat/agreeAddFriend',
 		method: 'post',
 		data
 	})

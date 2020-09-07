@@ -33,7 +33,7 @@ const routes = [
 	{
 		path: '/register',
 		exact: true,
-		auth: true,
+		auth: false,
 		component: Register
 	},
 	{

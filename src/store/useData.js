@@ -13,10 +13,6 @@ function useData(getData) {
 	
 	useEffect(() => {
 		fetchData()
-		// getUserDetail('a666591f-a999-4b08-98f3-bd9a08f9c90f')
-		// 	.then(res => {
-		// 		console.log(res)
-		// 	})
 	}, [])
 	
 	const fetchData = (pagination = data.pagination) => {

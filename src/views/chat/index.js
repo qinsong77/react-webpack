@@ -154,7 +154,6 @@ function Chat({ parentRoute, history, location }) {
 					visible={editUserModalVisible}/>
 			</div>
 		</Context.Provider>
-	
 	)
 }
 

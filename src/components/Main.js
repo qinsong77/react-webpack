@@ -2,21 +2,27 @@ import React from 'react'
 import { Switch, withRouter, Route, Redirect } from 'react-router-dom'
 
 import { Layout, Menu, Breadcrumb } from 'antd'
-import * as Icon from '@ant-design/icons'
+// import * as Icons from '@ant-design/icons'
+
+import { DashboardOutlined, UserOutlined } from '@ant-design/icons'
+
+const Icons = {
+	DashboardOutlined,
+	UserOutlined
+}
 
 const { Header, Footer, Sider, Content } = Layout
 const { SubMenu } = Menu
 
-import HeaderComp from '../components/Header'
-
-import HandleRoute from './HandleRoute'
 import '../styles/main-layout.less'
+import HeaderComp from './Header'
+import HandleRoute from './HandleRoute'
 import NoMatch from '../views/error/NotFound'
 
 // 渲染二级菜单
 function RenderMenuWithSub (route) {
 	const icon = React.createElement(
-		Icon[route.icon]
+		Icons[route.icon]
 	)
 	return (
 		<SubMenu key={ route.path } icon={icon} title={ route.title }>
@@ -50,6 +56,8 @@ function RenderBread (routes, pathName) {
 
 function Main ({ parentRoute, history, location }) {
 	
+	console.log(location)
+	
 	const { subs: subRoutes } = parentRoute
 	
 	const menuOnClick = ({ item, key, keyPath, domEvent }) => {
@@ -64,19 +72,21 @@ function Main ({ parentRoute, history, location }) {
 	return (
 			<div className="container">
 
-
 				<Layout>
 					<Header className='container-header'>
 						<HeaderComp/>
 					</Header>
 				</Layout>
+				
 				<Layout>
 					<Sider width={200}>
 						<Menu
 							onClick={menuOnClick}
 							mode="inline"
-							defaultSelectedKeys={location.pathname}
+							// selectedKeys={[location.pathname]}
+							defaultSelectedKeys={[location.pathname]}
 							defaultOpenKeys={[setDefaultOpenKeys()]}
+							// openKeys={[setDefaultOpenKeys()]}
 							style={{ height: '100%', borderRight: 0 }}>
 							{ subRoutes.map((item, index) =>
 								item.hasOwnProperty('subs') ?
@@ -85,7 +95,7 @@ function Main ({ parentRoute, history, location }) {
 										<Menu.Item key={item.path}>
 											{
 												React.createElement(
-													Icon[item.icon]
+													Icons[item.icon]
 												)
 											}
 											{ item.title }
@@ -94,6 +104,7 @@ function Main ({ parentRoute, history, location }) {
 							)}
 						</Menu>
 					</Sider>
+					
 					<Layout className='container-main'>
 						{ RenderBread(subRoutes, location.pathname) }
 						<Content className="container-main-content">
@@ -118,6 +129,7 @@ function Main ({ parentRoute, history, location }) {
 						</Content>
 						<Footer className='container-footer'>footer</Footer>
 					</Layout>
+					
 				</Layout>
 			</div>
 	)
