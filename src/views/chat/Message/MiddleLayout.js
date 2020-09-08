@@ -39,7 +39,7 @@ function MiddleLayout(props) {
 					friends.map(item => (
 						<li
 							onClick={(e) => switchChat(item)}
-							key={item.id} className={currentFriend.friendId ===item.friendId ? 'active-item' : ''}>
+							key={item.id} className={currentFriend.id ===item.id ? 'active-item' : ''}>
 							<img className='avatar' src={ window.publicPath + item.avatar }/>
 							<div className='list-middle'>
 								<h5>{item.name}</h5>

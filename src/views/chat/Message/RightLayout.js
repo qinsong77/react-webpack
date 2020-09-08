@@ -11,7 +11,7 @@ function RightLayout(props) {
 	function sendMessage() {
 		const message = {
 			content,
-			friendId: currentFriend.friendId,
+			friendId: currentFriend.id,
 			time: new Date(),
 			type: 0
 		}
@@ -49,7 +49,7 @@ function RightLayout(props) {
 						<Divider/>
 						<ul className='message-list'>
 							{
-								Array.isArray(messages[currentFriend.friendId]) && messages[currentFriend.friendId].map(item => {
+								Array.isArray(messages[currentFriend.id]) && messages[currentFriend.id].map(item => {
 									return <li
 										key={item.friendId + item.time}
 										className={item.self ? 'right' : 'left'}

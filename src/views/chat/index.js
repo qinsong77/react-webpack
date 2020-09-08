@@ -31,12 +31,7 @@ function Chat({ parentRoute, history, location }) {
 			dispatch({
 				type: 'init_friends',
 				payload: {
-					friends: friends.map(v=> {
-						// 处理数据
-						Object.assign(v, v.friend)
-						delete v.friend
-						return v
-					})
+					friends: friends
 				}
 			})
 			if (friends.length > 0) {
@@ -47,8 +42,8 @@ function Chat({ parentRoute, history, location }) {
 					}
 				})
 				const messages = {}
-				friends.forEach(v => {
-					messages[v.friendId] = []
+				friends.forEach(friend => {
+					messages[friend.id] = []
 				})
 				dispatch({
 					type: 'init_messages',
@@ -86,7 +81,7 @@ function Chat({ parentRoute, history, location }) {
 				})
 				// eslint-disable-next-line max-nested-callbacks
 				friends.forEach(v => {
-					if (!messages.hasOwnProperty(v.friendId)) messages[v.friendId] = []
+					if (!messages.hasOwnProperty(v.id)) messages[v.id] = []
 				})
 				dispatch({
 					type: 'init_messages',
