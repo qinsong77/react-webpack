@@ -64,7 +64,7 @@ module.exports = webpackMerge.merge(common, {
             filename: 'css/[name].[hash].css',
             chunkFilename: 'css/[id].[hash].css',
         }),
-        new BundleAnalyzerPlugin(),
+        // new BundleAnalyzerPlugin(),
         new CleanWebpackPlugin()
     ]
 });

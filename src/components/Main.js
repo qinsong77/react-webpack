@@ -1,14 +1,14 @@
-import React from 'react'
+import React,{ Suspense } from 'react'
 import { Switch, withRouter, Route, Redirect } from 'react-router-dom'
 
 import { Layout, Menu, Breadcrumb } from 'antd'
 // import * as Icons from '@ant-design/icons'
-
-import { DashboardOutlined, UserOutlined } from '@ant-design/icons'
-
+import Loading from './Loading'
+import { DashboardOutlined, UserOutlined, RadarChartOutlined } from '@ant-design/icons'
 const Icons = {
 	DashboardOutlined,
-	UserOutlined
+	UserOutlined,
+	RadarChartOutlined
 }
 
 const { Header, Footer, Sider, Content } = Layout
@@ -16,7 +16,7 @@ const { SubMenu } = Menu
 
 import '../styles/main-layout.less'
 import HeaderComp from './Header'
-import HandleRoute from './HandleRoute'
+// import HandleRoute from './HandleRoute'
 import NoMatch from '../views/error/NotFound'
 
 // 渲染二级菜单
@@ -56,9 +56,9 @@ function RenderBread (routes, pathName) {
 
 function Main ({ parentRoute, history, location }) {
 	
-	console.log(location)
-	
 	const { subs: subRoutes } = parentRoute
+	
+	// console.log(subRoutes)
 	
 	const menuOnClick = ({ item, key, keyPath, domEvent }) => {
 		history.push(key)
@@ -108,24 +108,23 @@ function Main ({ parentRoute, history, location }) {
 					<Layout className='container-main'>
 						{ RenderBread(subRoutes, location.pathname) }
 						<Content className="container-main-content">
-							<Switch>
-								<Redirect exact from={parentRoute.path} to={subRoutes[0].path}/>
-								{ subRoutes.map((route, i) =>
-									{
-										return route.hasOwnProperty('subs') ?
-											(
-												<Switch key={route.path}>
-													 <Redirect exact from={route.path} to={route.subs[0].path}/>
-													{ route.subs.map(sub => (<HandleRoute key={sub.path} {...sub} />)) }
-												</Switch>
-											) :
-											(<HandleRoute key={route.path} {...route} />)
-									}
-								)}
-								<Route path="*">
-									<NoMatch/>
-								</Route>
-							</Switch>
+							<Suspense fallback={<Loading/>}>
+								<Switch key={subRoutes.path}>
+									<Redirect exact from={parentRoute.path} to={subRoutes[0].path}/>
+									{ subRoutes.map((route, i) =>
+										{
+											return route.hasOwnProperty('subs') ?
+												(
+													route.subs.map(sub => (<Route  key={sub.path} path={sub.path} component={sub.component} />))
+												) :
+												<Route  key={route.path} path={route.path} component={route.component} />
+										}
+									)}
+									<Route path="*">
+										<NoMatch/>
+									</Route>
+								</Switch>
+							</Suspense>
 						</Content>
 						<Footer className='container-footer'>footer</Footer>
 					</Layout>

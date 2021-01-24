@@ -5,6 +5,7 @@ const Context = React.createContext({
 	currentFriend: {},
 	messages: {},
 	socket: null,
-	userInfo: config.getUserInfo()
+	userInfo: config.getUserInfo(),
+	addFriendMessages: []
 })
 export default Context

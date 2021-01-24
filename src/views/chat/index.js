@@ -4,7 +4,7 @@ import './index.less'
 import { ContactsFilled, MessageFilled, PushpinFilled, SettingFilled, SoundFilled } from '@ant-design/icons'
 import HandleRoute from '../../components/HandleRoute'
 import reducer from './reducer/reducer'
-import { getFriends, getHistoryMessages } from '../../api'
+import { getAddMessage, getFriends, getHistoryMessages } from '../../api'
 import Context from './context'
 import socketIo from './socket'
 import config from '../../config'
@@ -20,7 +20,8 @@ function Chat({ parentRoute, history, location }) {
 		currentFriend: {},
 		messages: {},
 		socket: null,
-		userInfo: config.getUserInfo()
+		userInfo: config.getUserInfo(),
+		addFriendMessages: []
 	})
 	useEffect(() => {
 		getFriends({
@@ -90,6 +91,15 @@ function Chat({ parentRoute, history, location }) {
 					}
 				})
 			})
+			
+			getAddMessage().then(res => {
+				dispatch({
+					type: 'init_add_friend_messages',
+					payload: {
+						addFriendMessages: res.data.data
+					}
+				})
+			})
 		})
 		const socket = socketIo()
 		dispatch({
@@ -108,6 +118,15 @@ function Chat({ parentRoute, history, location }) {
 			console.log(data)
 			dispatch({
 				type: 'add_message',
+				payload: {
+					message: data
+				}
+			})
+		})
+		socket.on('new_add_msg', data => {
+			console.log(data)
+			dispatch({
+				type: 'add_friend_message',
 				payload: {
 					message: data
 				}

@@ -5,6 +5,16 @@ function reducer (state, { type, payload}) {
 				...state,
 				userInfo: payload.userInfo
 			}
+		case 'init_add_friend_messages':
+			return {
+				...state,
+				addFriendMessages: payload.addFriendMessages
+			}
+		case 'add_friend_message':
+			return {
+				...state,
+				addFriendMessages: [payload.message, ...payload.addFriendMessages]
+			}
 		case 'init_friends':
 			return {
 				...state,

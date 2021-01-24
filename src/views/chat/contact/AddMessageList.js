@@ -1,23 +1,25 @@
-import React from 'react'
-import { Button, Divider, Typography, message } from 'antd'
-import { getAddMessage } from '../../../api'
-import useData from '../../../store/useData'
+import React, { useContext } from 'react'
+import { Button, Divider, Typography, message, Empty } from 'antd'
 // eslint-disable-next-line no-duplicate-imports
 import { agreeAddFriend } from '../../../api'
+import Context from '../context'
 
 const { Text } = Typography
 
 function AddMessageList() {
 	
-	const [data, fetchData] = useData(getAddMessage)
-	console.log(data)
+	const { state, dispatch } = useContext(Context)
 	
 	function agreeAdd(id) {
+		if (state.socket.connected) {
+			state.socket.emit('agree_add_friend', id)
+			
+			return message.success('添加成功！')
+		}
 		agreeAddFriend({
 			msgId: id
 		}).then(res => {
 			message.success('添加成功！')
-			fetchData()
 		})
 	}
 	
@@ -25,11 +27,19 @@ function AddMessageList() {
 		<div className='chat-layout-right contact-right'>
 			<h3>新的朋友</h3>
 			<Divider/>
-			<ul>
-				{
-					data.data.map(v => <Item key={v.id} {...v} agreeAdd={agreeAdd}/>)
-				}
-			</ul>
+			{
+				state.addFriendMessages.length === 0 ? (<Empty
+					style={{ marginTop: '30%' }}
+					description="暂无添加好友请求">
+				</Empty>): (
+					<ul>
+						{
+							state.addFriendMessages.map(v => <Item key={v.id} {...v} agreeAdd={agreeAdd}/>)
+						}
+					</ul>
+				)
+			}
+			
 		</div>
 	)
 }

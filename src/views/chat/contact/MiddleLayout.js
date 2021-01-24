@@ -15,10 +15,17 @@ function MiddleLayout() {
 	
 	function handleOk(val) {
 		setConfirmLoading(true)
-		addFriend({
+		const data = {
 			responder: val.value,
 			remarks: val.remarks
-		}).then(res => {
+		}
+		console.log(state.socket)
+		if (state.socket.connected) {
+			state.socket.emit('add_friend', data)
+			setConfirmLoading(false)
+			return message.success('发送请求成功')
+		}
+		addFriend(data).then(res => {
 			setVisible(false)
 			message.success('发送请求成功')
 		}).finally(() => {
