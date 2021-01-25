@@ -19,5 +19,6 @@ module.exports = {
 	},
 	rules: {
 		// 自定义你的规则
+		"no-invalid-this": 0, // 禁止无效的this，只能用在构造器，类，对象字面量
 	}
 }

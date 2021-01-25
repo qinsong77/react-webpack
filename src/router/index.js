@@ -105,6 +105,23 @@ const routes = [
 						component: lazy(() => import('../views/main/test/tree'))
 					}
 				]
+			},
+			{
+				path: '/main/reactHooks',
+				title: 'react hooks',
+				icon: 'RadarChartOutlined',
+				subs: [
+					{
+						path: '/main/reactHooks/one',
+						title: 'test-1',
+						component: lazy(() => import('../views/main/reactHooks/one'))
+					},
+					{
+						path: '/main/reactHooks/two',
+						title: 'test-2',
+						component: lazy(() => import('../views/main/reactHooks/two'))
+					}
+				]
 			}
 		]
 	}
