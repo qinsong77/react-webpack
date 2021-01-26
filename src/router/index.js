@@ -5,6 +5,7 @@ import Register from '../views/Register/register'
 import Chat from '../views/chat'
 import Message from '../views/chat/Message/index'
 import Contact from '../views/chat/contact/index'
+// import SuspenseDemo from '../views/main/reactHooks/SuspenseDemo'
 /*
 	重定向只到二级路由
  */

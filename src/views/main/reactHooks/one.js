@@ -8,9 +8,9 @@ function Counter1(props) {
 	function getInitState() {
 		return { number: props.number }
 	}
-	
+	const number1 = props.number
 	let [counter, setCounter] = useState(getInitState())
-	let [counter1, setCounter2] = useState(props.number)
+	let [counter1, setCounter2] = useState(number1)
 	return (
 		<>
 			<h1>name: { props.name }</h1>

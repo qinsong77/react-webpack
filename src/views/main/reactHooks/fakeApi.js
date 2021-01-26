@@ -45,7 +45,7 @@ function fetchUser(){
 			resolve({
 				name: 'Ringo Starr'
 			})
-		}, 10000)
+		}, 5000)
 	})
 }
 
@@ -71,6 +71,6 @@ function fetchPosts(){
 						'You got that sand all over your feet'
 				}
 			])
-		}, 20000)
+		}, 10000)
 	})
 }
