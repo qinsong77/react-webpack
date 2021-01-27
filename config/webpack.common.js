@@ -39,7 +39,7 @@ module.exports = {
         path: resolve('../dist')
     },
     resolve: {
-        extensions: ['.js', '.jsx'],
+        extensions: ['.ts', '.tsx', '.jsx', '.js', '.json'],
         // 设置别名
         alias: {
             '@': resolve('../src'),// 这样配置后 @ 可以指向 src 目录
@@ -48,12 +48,22 @@ module.exports = {
         }
     },
     module: {
+        // noParse:/antd|@ant-design/, // 根据这个noParse的配置来决定，是否要递归解析这个文件。
         rules: [
             {
+                test: /\.ts(x?)$/,
+                exclude: /node_modules/,
+                use: [{
+                    loader: 'ts-loader',
+                },],
+            },
+            {
                 test: /\.(js|jsx)$/,
-                use: 'babel-loader',
+                use: 'babel-loader?cacheDirectory=true',
+                // include: resolve('../src'),
                 exclude: /node_modules/,
             },
+            // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
             {
                 test: /\.css$/,
                 use: getCssLoaders(1),
