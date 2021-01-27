@@ -126,6 +126,11 @@ const routes = [
 						path: '/main/reactHooks/suspense-demo',
 						title: 'suspense-demo',
 						component: lazy(() => import('../views/main/reactHooks/SuspenseDemo'))
+					},
+					{
+						path: '/main/reactHooks/demo',
+						title: 'demo',
+						component: lazy(() => import('../views/main/reactHooks/Demo'))
 					}
 				]
 			}

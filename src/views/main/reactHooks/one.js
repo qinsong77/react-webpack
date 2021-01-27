@@ -27,12 +27,23 @@ const Counter1Memo = memo(Counter1)
 
 function Test() {
 	console.log('render 1')
-	const [state, setSate] = useState(111)
+	const [state, setState] = useState(111)
 	
+	const [obj, setObj] = useState({
+		a: 1,
+		b: 2
+	})
+	function test() {
+		obj.a = 2
+		// setObj({ ...obj, a: 12})
+		setObj(obj)
+		console.log(obj)
+	}
+	console.log(obj)
 	function AlertNum() {
-		setSate((state + 1))
+		setState((state + 1))
 		setTimeout(() => {
-			setSate(number => number + 1)
+			setState(number => number + 1)
 			// setSate((state+1)) // 不起作用
 			alert(state) // 0
 		}, 3000)
@@ -41,7 +52,10 @@ function Test() {
 	return (
 		<div>
 			<p>{state}</p>
-			<button onClick={() => setSate(prev => prev + 1)}>add</button>
+			<p>{ obj.a }</p>
+			<p>{ obj.b }</p>
+			<button onClick={() => setState(prev => prev + 1)}>add</button>
+			<button onClick={() => test()}>test</button>
 			<br/>
 			<button onClick={AlertNum}>AlertNum</button>
 			<Counter1 number={state} name='1' key={1}/>
