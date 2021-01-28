@@ -138,6 +138,11 @@ const routes = [
 						component: lazy(() => import('../views/main/reactHooks/UseContext/Counter'))
 					},
 					{
+						path: '/main/reactHooks/useRef',
+						title: 'useRef demo',
+						component: lazy(() => import('../views/main/reactHooks/UseRefDemo/Index'))
+					},
+					{
 						path: '/main/reactHooks/demo',
 						title: 'demo',
 						component: lazy(() => import('../views/main/reactHooks/Demo'))

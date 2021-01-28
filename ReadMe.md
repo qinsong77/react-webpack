@@ -80,6 +80,9 @@ eslint
 npm install --save-dev eslint babel-eslint eslint-plugin-react eslint-config-alloy
 npm install husky lint-staged -D
 
+// https://www.npmjs.com/package/@typescript-eslint/eslint-plugin
+cnpm i @typescript-eslint/parser -D
+cnpm i --save-dev @typescript-eslint/eslint-plugin
 
 ```  
 2.  

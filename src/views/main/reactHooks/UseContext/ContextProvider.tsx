@@ -15,6 +15,7 @@ interface Props {
 }
 
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function CounterProvider({ children }: Props) {
     const [counter, setCounter] = useState(0);
 
@@ -26,6 +27,6 @@ export function CounterProvider({ children }: Props) {
     }
 
     return (
-        < context.Provider value={value}>{children}</context.Provider>
+        <context.Provider value={value}>{children}</context.Provider>
     )
 }
