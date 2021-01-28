@@ -128,9 +128,24 @@ const routes = [
 						component: lazy(() => import('../views/main/reactHooks/SuspenseDemo'))
 					},
 					{
+						path: '/main/reactHooks/useReducer',
+						title: 'useReducer demo',
+						component: lazy(() => import('../views/main/reactHooks/UseReducerDemo'))
+					},
+					{
+						path: '/main/reactHooks/useContext',
+						title: 'useContext demo',
+						component: lazy(() => import('../views/main/reactHooks/UseContext/Counter'))
+					},
+					{
 						path: '/main/reactHooks/demo',
 						title: 'demo',
 						component: lazy(() => import('../views/main/reactHooks/Demo'))
+					},
+					{
+						path: '/main/reactHooks/mouseTrack',
+						title: 'demo mouse track',
+						component: lazy(() => import('../views/main/reactHooks/MouseTrack'))
 					}
 				]
 			}
