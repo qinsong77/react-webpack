@@ -3,6 +3,9 @@ import React, { useRef, createRef, useState } from 'react'
 import { Button, Divider } from 'antd'
 import Input from './Input'
 import InputImperativeHandle from './InputImperativeHandle'
+import Compare from "./Compare"
+import ExampleDemo from "./ExampleDemo";
+import OldWayParentCallChild from "./OldWayParentCallChild";
 
 class FocusInputCls extends React.Component<any, any>{
     textInput = createRef<HTMLInputElement>()
@@ -11,7 +14,7 @@ class FocusInputCls extends React.Component<any, any>{
             this.textInput.current.focus()
         }
     }
-    
+
     render() {
         return (
             <>
@@ -27,25 +30,25 @@ function FocusInputByHooks() {
     const inputRef = useRef<HTMLInputElement>(null)
     const inputRefTwo = useRef<HTMLInputElement>(null)
     const inputRefThree = useRef<any>(null)
-    
+
     const [text, setText] = useState('')
-    
+
     const focusTextInput = () => {
         console.log(inputRef)
         if (inputRef.current) {
             inputRef.current.focus()
         }
     }
-    
+
     const focusTextInputThree = () => {
         console.log(inputRefThree)
         if (inputRefThree.current) {
             console.log(inputRefThree.current)
             inputRefThree.current.focus()
-            inputRefThree.current.sayHi()
+            inputRefThree.current.setInputValue('hello world')
         }
     }
-    
+
     return (
         <>
             <input type="text" ref={inputRef} />
@@ -67,6 +70,12 @@ export default function () {
             <FocusInputCls/>
             <Divider/>
             <FocusInputByHooks/>
+            <Divider/>
+            <Compare/>
+            <Divider/>
+            <ExampleDemo/>
+            <Divider/>
+            <OldWayParentCallChild/>
         </div>
     )
 }

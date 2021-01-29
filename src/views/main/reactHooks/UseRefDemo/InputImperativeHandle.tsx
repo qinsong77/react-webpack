@@ -8,13 +8,13 @@ export interface InputProps {
 export interface XInput {
     focus: () => void;
     blur: () => void;
-    sayHi: () => void
+    setInputValue: (value: string) => void
 }
 
 function Input({ value, onChange }: InputProps, ref: Ref<XInput>) {
     const inputRef = useRef<HTMLInputElement>(null)
     const [_value, setValue] = useState(value || '')
-    
+
     useImperativeHandle(ref, () => ({
         focus: () => {
             inputRef.current && inputRef.current.focus()
@@ -22,18 +22,18 @@ function Input({ value, onChange }: InputProps, ref: Ref<XInput>) {
         blur: () => {
             inputRef.current && inputRef.current.blur()
         },
-        sayHi: () => {
-            console.log('hello, world!')
+        setInputValue: (value: string) => {
+            setValue(value)
         }
     }))
-    
+
     const _onChange = (e: ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value
         console.log(value)
         setValue(value)
         onChange && onChange(value)
     }
-    
+
     return (
         <div>
             <h4>自定义的useImperativeHandle Input组件</h4>

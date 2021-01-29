@@ -143,6 +143,11 @@ const routes = [
 						component: lazy(() => import('../views/main/reactHooks/UseRefDemo/Index'))
 					},
 					{
+						path: '/main/reactHooks/useMemo',
+						title: 'useMemo useCallback demo',
+						component: lazy(() => import('../views/main/reactHooks/UseMemoUseCallback/Index'))
+					},
+					{
 						path: '/main/reactHooks/demo',
 						title: 'demo',
 						component: lazy(() => import('../views/main/reactHooks/Demo'))
