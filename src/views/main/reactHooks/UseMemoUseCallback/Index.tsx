@@ -1,7 +1,6 @@
-import React, {useState, useMemo} from 'react'
+import React, { useState, useMemo } from 'react'
 import Example from './Example'
-import {Divider, Button} from "antd"
-
+import { Divider, Button } from 'antd'
 
 const ExMemo = React.memo(Example)
 
@@ -28,9 +27,9 @@ export default function () {
     return (
         <div>
             <h3>example one</h3>
-            <Example/>
-            <ExMemo/>
-            <Divider/>
+            <Example />
+            <ExMemo />
+            <Divider />
             <h3>count：{num}</h3>
             <Button onClick={() => setNum(num + base)}>+1</Button>
         </div>

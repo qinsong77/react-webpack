@@ -7,13 +7,13 @@ export interface InputProps {
 
 function Input({ value, onChange }: InputProps, ref: any) {
     const [_value, setValue] = useState(value || '')
-    
+
     const _onChange = (e: ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value
         setValue(value)
         onChange && onChange(value)
     }
-    
+
     return (
         <div>
             <h4>自定义Input组件</h4>

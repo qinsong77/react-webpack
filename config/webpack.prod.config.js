@@ -1,10 +1,9 @@
 const webpackMerge = require('webpack-merge');
 const common = require('./webpack.common.js');
 
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin') // // 抽取css代码
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
@@ -51,15 +50,6 @@ module.exports = webpackMerge.merge(common, {
         filename: 'js/[name].[chunkhash:8].bundle.js',
     },
     plugins: [
-        new HtmlWebpackPlugin({
-            filename: 'index.html',
-            template: 'public/index.html',
-            inject: 'body',
-            minify: {
-                removeComments: true, // 去除注释
-                // collapseWhitespace: true, //去除空格
-            }
-        }),
         new MiniCssExtractPlugin({
             filename: 'css/[name].[hash].css',
             chunkFilename: 'css/[id].[hash].css',
