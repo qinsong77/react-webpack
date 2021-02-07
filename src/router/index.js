@@ -2,9 +2,9 @@ import { lazy } from 'react'
 
 import Index from '../views/index'
 import Register from '../views/Register/register'
-import Chat from '../views/chat'
-import Message from '../views/chat/Message/index'
-import Contact from '../views/chat/contact/index'
+// import Chat from '../views/chat'
+// import Message from '../views/chat/Message/index'
+// import Contact from '../views/chat/contact/index'
 // import SuspenseDemo from '../views/main/reactHooks/SuspenseDemo'
 /*
 	重定向只到二级路由
@@ -38,17 +38,21 @@ const routes = [
         path: '/chat',
         exact: false,
         auth: true,
-        component: Chat,
+        component: import(/* webpackChunkName: "chat", webpackPrefetch: true */ '../views/chat'),
         subs: [
             {
                 path: '/chat/message',
                 title: 'message',
-                component: Message
+                component: import(
+                    /* webpackChunkName: "chat", webpackPrefetch: true */ '../views/chat/Message'
+                )
             },
             {
                 path: '/chat/contact',
                 title: 'contact',
-                component: Contact
+                component: import(
+                    /* webpackChunkName: "chat", webpackPrefetch: true */ '../views/chat/contact'
+                )
             }
         ]
     },
@@ -160,7 +164,9 @@ const routes = [
                     {
                         path: '/main/reactHooks/mouseTrack',
                         title: 'demo mouse track',
-                        component: lazy(() => import('../views/main/reactHooks/MouseTrackDemoList/MouseTrack'))
+                        component: lazy(() =>
+                            import('../views/main/reactHooks/MouseTrackDemoList/MouseTrack')
+                        )
                     }
                 ]
             }
